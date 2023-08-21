@@ -1,0 +1,210 @@
+@font-face {
+  font-family: "SFProDisplay"; /* Font nomi */
+  src: url("./font/SFPRODISPLAYMEDIUM.OTF") format("opentype"); /* Fontning URL'i va formati */
+  font-weight: normal; /* Odatiy yoki bo'shatiladigan hosil bo'lishi mumkin */
+  font-style: normal; /* Odatiy yoki italic bo'lishi mumkin */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "SFProDisplay", sans-serif !important;
+}
+* {
+  box-sizing: border-box;
+}
+
+.btn-login {
+  border-radius: 6px;
+  opacity: 0.8;
+  background: #2d3a45;
+  box-shadow: 0px 2px 2px 0px rgba(174, 176, 181, 0.31);
+  width: 300px;
+  height: 70px;
+  flex-shrink: 0;
+  border: none;
+  font-size: 18px;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-login:hover {
+  background-color: white;
+  color: black;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.active .MuiListItemButton-gutters {
+  background-color: #fcb600 !important;
+  border-radius: 0px 6px 6px 0px;
+}
+.active .MuiListItemButton-gutters .MuiListItemText-primary {
+  color: white !important;
+}
+
+.MuiList-root,
+.MuiList-padding,
+.css-11fbwpb-MuiList-root {
+  padding-top: 0 !important;
+}
+
+.navbarActiveButton {
+  border-radius: 18px;
+  box-shadow: 0px 2px 2px 0px rgba(174, 176, 181, 0.31);
+  width: 25%;
+  min-height: 36px;
+  margin: 0 2.5px;
+  border: none;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  background-color: white;
+}
+
+.navbarNoActiveButton {
+  border: none;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  min-height: 36px;
+  margin: 0 2.5px;
+  width: 25%;
+  color: #2d3a45;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+.navbarNoActiveButton:hover {
+  background-color: white;
+  transition: 0.3s;
+}
+.ordersBtnTopLeftActive {
+  border-radius: 18px;
+  box-shadow: 0px 2px 2px 0px rgba(174, 176, 181, 0.31);
+  min-width: 36px;
+  min-height: 36px;
+  border: none;
+  background-color: white;
+}
+
+.ordersBtnTopLeftNoActive {
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  min-height: 36px;
+  min-width: 36px;
+  color: #2d3a45;
+}
+.btnOrderLeftTop,
+.btnOrderLeftBottom {
+  border: 5px solid #edeff3;
+  border-radius: 50%;
+  background-color: white;
+  min-width: 45px;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btnOrderLeftTop {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+}
+
+.btnOrderLeftBottom {
+  position: absolute;
+  bottom: 20px;
+  right: -30px;
+}
+
+.navbarActiveOrderBtn {
+  border-radius: 18px;
+  box-shadow: 0px 2px 2px 0px rgba(174, 176, 181, 0.31);
+  padding: 0 20px;
+  min-height: 36px;
+  border: none;
+  background-color: white;
+  margin: 0 2.5px;
+  flex: auto;
+}
+
+.navbarNoActiveOrderBtn {
+  border: none;
+  cursor: pointer;
+  flex: auto;
+  margin: 0 2.5px;
+  min-height: 36px;
+  padding: 0 20px;
+  color: #2d3a45;
+  border-radius: 18px;
+  transition: 0.3s;
+}
+.navbarNoActiveOrderBtn:hover {
+  background-color: white;
+  transition: 0.3s;
+}
+
+.set-order-active {
+  background-color: #edeff3;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0px 20px 25px 0px rgba(176, 177, 181, 0.43);
+}
+
+.set-order-no-active {
+  background-color: white;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0px 2px 2px 0px rgba(174, 176, 181, 0.31);
+}
+
+.set-order-no-active:hover {
+  background-color: #edeff3;
+  box-shadow: 0px 20px 25px 0px rgba(176, 177, 181, 0.43);
+}
+
+.all-button {
+  background-color: #20d472;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 2px solid #20d472;
+  transition: 0.4s;
+}
+
+.all-button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #20d472;
+  border: 2px solid #20d472;
+  transition: 0.4s;
+}
+
+.product-img-new-order {
+  max-height: 116px;
+  object-fit: cover;
+}
+
+.MuiDataGrid-root--densityStandard {
+  min-height: calc(100vh - 88px) !important;
+}
+
+.xcardType {
+  border: 5px solid #edeff3;
+  border-radius: 50%;
+  background-color: white;
+  min-width: 45px;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

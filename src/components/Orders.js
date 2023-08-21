@@ -251,7 +251,7 @@ function _Orders(props) {
         </Box>
       ) : (
         <Box sx={{ padding: "25px 35px", display: "flex", gap: "10px" }}>
-          <Box sx={{ minWidth: "234px" }}>
+          <Box sx={{ minWidth: "auto" }}>
             <Box
               sx={{
                 display: "flex",
@@ -329,7 +329,7 @@ function _Orders(props) {
               ))}
           </Box>
 
-          <Box sx={{ minWidth: "234px" }}>
+          <Box sx={{ minWidth: "auto" }}>
             <Box
               sx={{
                 display: "flex",
@@ -408,7 +408,7 @@ function _Orders(props) {
               ))}
           </Box>
 
-          <Box sx={{ minWidth: "234px" }}>
+          <Box sx={{ minWidth: "auto" }}>
             <Box
               sx={{
                 display: "flex",
@@ -487,7 +487,7 @@ function _Orders(props) {
               ))}
           </Box>
 
-          <Box sx={{ minWidth: "234px" }}>
+          <Box sx={{ minWidth: "auto" }}>
             <Box
               sx={{
                 display: "flex",
@@ -556,6 +556,85 @@ function _Orders(props) {
             {orders
               .filter((item) => {
                 return item.status === "closed";
+              })
+              .map((item, index) => (
+                <_OrderVertical
+                  enteredDale={enteredDale}
+                  key={index}
+                  item={item}
+                />
+              ))}
+          </Box>
+
+          <Box sx={{ minWidth: "auto" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center ",
+                mb: "10px",
+                gap: "10px",
+              }}
+            >
+              <Typography sx={{ color: "#8D9BA8", fontSize: "14px" }}>
+                Bekor qilingan
+              </Typography>
+
+              <Box
+                style={{
+                  padding: "3px 15px ",
+                  borderRadius: "4px",
+                  color: "#8D9BA8",
+                  backgroundColor: "white",
+                }}
+              >
+                {
+                  orders.filter((item) => {
+                    return item.status === "cancelled";
+                  }).length
+                }
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                bgcolor: "white",
+                padding: "10px 20px",
+                borderRadius: "6px",
+                mb: "10px",
+                boxShadow: "0px 2px 2px 0px rgba(174, 176, 181, 0.31)",
+              }}
+            >
+              <Box
+                sx={{
+                  backgroundColor: "red",
+                  minWidth: "15px",
+                  minHeight: "15px",
+                  borderRadius: "50%",
+                }}
+              ></Box>
+
+              <Typography sx={{ fontSize: "20px", fontWeight: "bold" }}>
+                {orders
+                  .filter((item) => item.status === "cancelled")
+                  .reduce((totalSum, order) => {
+                    const orderTotalSum = order.orders.reduce(
+                      (sum, product) => sum + product.price * product.count,
+                      0
+                    );
+                    return totalSum + orderTotalSum;
+                  }, 0)
+                  .toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "UZS",
+                  })}
+              </Typography>
+            </Box>
+            {orders
+              .filter((item) => {
+                return item.status === "cancelled";
               })
               .map((item, index) => (
                 <_OrderVertical

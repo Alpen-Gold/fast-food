@@ -37,6 +37,7 @@ export default function _DrawerEditProduct(props) {
   let [nameValue, setNameValue] = useState("");
   let [categoryValue, setCategoryValue] = useState("");
   let [priceValue, setPriceValue] = useState("");
+  let [extraValue, setExtraValue] = useState("");
   let [editClick, setEditClick] = useState({});
   let [image, setImage] = useState(null);
   let allSummaOrder = buyesProducts.reduce(
@@ -76,6 +77,7 @@ export default function _DrawerEditProduct(props) {
     if (type.target.name === "ism") setNameValue(type.target.value);
     if (type.target.name === "category") setCategoryValue(type.target.value);
     if (type.target.name === "price") setPriceValue(type.target.value);
+    if (type.target.name === "extra") setExtraValue(type.target.value);
   };
 
   let addNewProduct = () => {
@@ -96,7 +98,7 @@ export default function _DrawerEditProduct(props) {
           id: editClick.id,
           productName: nameValue,
           price: priceValue,
-          extra: "Kichkina lavash",
+          extra: extraValue,
           productImage: image ? image : editClick.productImage,
         },
         ...prev.slice(indexProduct + 1),
@@ -106,8 +108,8 @@ export default function _DrawerEditProduct(props) {
 
       setNameValue("");
       setPriceValue("");
-      //   setImage(null);
       setCategoryValue("");
+      setExtraValue("");
     } else {
       alert("Text kiriting !");
     }
@@ -122,6 +124,7 @@ export default function _DrawerEditProduct(props) {
     setCategoryValue(
       categories.find((item) => item.id === productItem.categoryId).categoryName
     );
+    setExtraValue(productItem.extra ? productItem.extra : null);
   };
 
   const list = (anchor) => (
@@ -253,7 +256,35 @@ export default function _DrawerEditProduct(props) {
             }}
           >
             <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
-              Qo’shimcha ma’lumot
+              Narxi
+            </Typography>
+
+            <TextField
+              value={extraValue}
+              name="extra"
+              sx={{ minWidth: "100%" }}
+              id="outlined-basic"
+              label="Qo’shimcha ma’lumot . . ."
+              variant="outlined"
+              onChange={(e) => textEnter(e)}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              minWidth: "100%",
+              my: "20px",
+              "& #outlined-basic": {
+                padding: "10px",
+              },
+
+              "& .MuiInputLabel-root": {
+                top: "-7px",
+              },
+            }}
+          >
+            <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
+              Surat yuklash uchun joy
             </Typography>
           </Box>
           <Box>

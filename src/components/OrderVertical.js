@@ -24,7 +24,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { buttonStyle, topCardCenter } from "../styles/style-sx";
 import { ContextApi } from "../context/context";
 import { productsData } from "../data/productsData";
-import { grey } from "@mui/material/colors";
+import { grey, red } from "@mui/material/colors";
 
 function _OrderVertical(props) {
   let { item } = props;
@@ -311,6 +311,7 @@ function _OrderVertical(props) {
           bgcolor: "white",
           padding: "20px",
           borderRadius: "6px",
+          overflowY: "auto",
           mb: "10px",
           "&:hover": {
             boxShadow: "0 20px 25px 0 rgba(176, 177, 181, 0.43)",
@@ -333,8 +334,19 @@ function _OrderVertical(props) {
             }}
           >
             <Box>
-              <Box sx={buttonStyleId}>
-                <Typography sx={{ fontSize: "20px" }}>{item.id}</Typography>
+              <Box
+                sx={{
+                  bgcolor: "#20D472",
+                  width: "50px",
+                  height: "36px",
+                  borderRadius: "20px",
+                  display: "flex",
+                  color: "white",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: "15px" }}>{item.id}</Typography>
               </Box>
             </Box>
 

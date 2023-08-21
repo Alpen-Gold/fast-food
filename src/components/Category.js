@@ -21,7 +21,6 @@ import _DrawerNewProduct from "../drawer-companents/DrawerNewProduct";
 import _DrawerAddNewCa_ry from "../drawer-companents/DrawerCa_ry";
 import _DrawerEditProduct from "../drawer-companents/DrawerEditProduct";
 import _DrawerEditCa_ry from "../drawer-companents/DraverEditCa_ry";
-import { bigCategoriesData } from "../data/bigCategory";
 
 export default function _Category() {
   let {
@@ -33,8 +32,6 @@ export default function _Category() {
     setProducts,
     buyesProducts,
     setBuyesProducts,
-    bigCategories,
-    setBigCategories,
   } = useContext(ContextApi);
 
   let deleteCategory = (categoryIndex) => {
@@ -79,11 +76,7 @@ export default function _Category() {
       renderCell: (params) => {
         return (
           <Typography>
-            {params.row.bigCategoryId
-              ? bigCategories.find(
-                  (item) => item.id === params.row.bigCategoryId
-                ).bigCategoryName
-              : "-"}
+            {params.row.bigCategoryId ? params.row.bigCategoryId : "-"}
           </Typography>
         );
       },

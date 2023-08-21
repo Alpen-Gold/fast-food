@@ -21,11 +21,9 @@ import _Employees from "./components/Employees";
 import { ordersData } from "./data/ordersData";
 import { categoriesData } from "./data/categoriesData";
 import { productsData } from "./data/productsData";
-import { bigCategoriesData } from "./data/bigCategory";
 
 function App() {
   let [orders, setOrders] = useState(ordersData);
-  let [bigCategories, setBigCategories] = useState(bigCategoriesData);
   let [categories, setCategories] = useState(categoriesData);
   let [products, setProducts] = useState(productsData);
   let [buyesProducts, setBuyesProducts] = useState([]);
@@ -55,8 +53,6 @@ function App() {
         setProducts,
         buyesProducts,
         setBuyesProducts,
-        bigCategories,
-        setBigCategories,
       }}
     >
       <Routes>

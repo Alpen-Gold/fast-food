@@ -85,175 +85,41 @@ const _Leyaut = () => {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <NavLink to={"/orders"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img src={checkCircle} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Buyurtmalar"
-                    sx={{ color: "#2D3A45" }}
-                  />
-                </ListItemButton>
-              </NavLink>
-
-              <NavLink to={"/product"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img src={archive} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Maxsulotlar"
-                    sx={{ color: "#2D3A45" }}
-                  />
-                </ListItemButton>
-              </NavLink>
-
-              <NavLink to={"/category"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img src={layers} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Kategoriyalar"
-                    sx={{ color: "#2D3A45" }}
-                  />
-                </ListItemButton>
-              </NavLink>
-
-              <NavLink to={"/fleal"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img src={mapPin} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText primary="Filiallar" sx={{ color: "#2D3A45" }} />
-                </ListItemButton>
-              </NavLink>
-
-              <NavLink to={"/customers"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img src={users} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText primary="Mijozlar" sx={{ color: "#2D3A45" }} />
-                </ListItemButton>
-              </NavLink>
-
-              <NavLink to={"/report"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img src={barChart2} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText primary="Xisobot" sx={{ color: "#2D3A45" }} />
-                </ListItemButton>
-              </NavLink>
-
-              <NavLink to={"/employees"}>
-                <ListItemButton sx={{ pl: "30px" }}>
-                  <ListItemIcon>
-                    <span
-                      className="bg-icon"
-                      style={{
-                        backgroundColor: "#F6F6F6",
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "5px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: 0,
-                      }}
-                    >
-                      <img style={{ opacity: "0.6" }} src={group} alt="" />
-                    </span>
-                  </ListItemIcon>
-                  <ListItemText primary="Hodimlar" sx={{ color: "#2D3A45" }} />
-                </ListItemButton>
-              </NavLink>
+              {[
+                { text: "Buyurtmalar", icon: checkCircle, path: "orders" },
+                { text: "Maxsulotlar", icon: archive, path: "product" },
+                { text: "Kategoriyalar", icon: layers, path: "category" },
+                { text: "Filiallar", icon: mapPin, path: "fleal" },
+                { text: "Mijozlar", icon: users, path: "customers" },
+                { text: "Xisobot", icon: barChart2, path: "report" },
+                { text: "Hodimlar", icon: group, path: "employees" },
+              ].map((item) => (
+                <NavLink to={item.path}>
+                  <ListItemButton sx={{ pl: "30px" }}>
+                    <ListItemIcon>
+                      <span
+                        className="bg-icon"
+                        style={{
+                          backgroundColor: "#F6F6F6",
+                          width: "36px",
+                          height: "36px",
+                          borderRadius: "5px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          margin: 0,
+                        }}
+                      >
+                        <img src={item.icon} alt="" />
+                      </span>
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={item.text}
+                      sx={{ color: "#2D3A45" }}
+                    />
+                  </ListItemButton>
+                </NavLink>
+              ))}
 
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>

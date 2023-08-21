@@ -17,6 +17,23 @@ body {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #20d472;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #20d472;
+}
+
 .btn-login {
   border-radius: 6px;
   opacity: 0.8;

@@ -15,8 +15,7 @@ import { ContextApi } from "../context/context";
 import { buttonStyle, disBetween, topCardCenter } from "../styles/style-sx";
 
 export default function DrawerEditCategory(props) {
-  const { categories, setCategories, bigCategories, setBigCategories } =
-    useContext(ContextApi);
+  const { categories, setCategories } = useContext(ContextApi);
   const [categoryNameRu, setCategoryNameRu] = useState("");
   const [categoryNameUz, setCategoryNameUz] = useState("");
   const [bigCategoryName, setBigCategoryName] = useState("");
@@ -57,11 +56,7 @@ export default function DrawerEditCategory(props) {
           id: categoryClick.id,
           categoryName: categoryNameUz,
           categoryNameRu: categoryNameRu ? categoryNameRu : null,
-          bigCategoryId: bigCategoryName
-            ? bigCategories.find(
-                (item) => item.bigCategoryName === bigCategoryName
-              ).id
-            : null,
+          bigCategoryId: bigCategoryName ? bigCategoryName : null,
         },
         ...prev.slice(indexCategory + 1),
       ]);
@@ -69,6 +64,7 @@ export default function DrawerEditCategory(props) {
       toggleDrawer("right", false)();
       setCategoryNameRu("");
       setCategoryNameUz("");
+      setBigCategoryName("");
     } else {
       alert("Iltimos, matn kiriting!");
     }
@@ -81,10 +77,7 @@ export default function DrawerEditCategory(props) {
       categoryItem.categoryNameRu ? categoryItem.categoryNameRu : ""
     );
     setBigCategoryName(
-      categoryItem.bigCategoryId
-        ? bigCategories.find((item) => item.id === categoryItem.bigCategoryId)
-            .bigCategoryName
-        : null
+      categoryItem.bigCategoryId ? categoryItem.bigCategoryId : null
     );
   };
 
@@ -164,26 +157,31 @@ export default function DrawerEditCategory(props) {
             />
           </Box>
 
-          <Box sx={{ minWidth: "100%" }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">
-                Big category name
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={bigCategoryName}
-                label="Kategoriya . . ."
-                name="bigCategoryName"
-                onChange={textEnter}
-              >
-                {bigCategories.map((item, index) => (
-                  <MenuItem key={index} value={item.bigCategoryName}>
-                    {item.bigCategoryName}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+          <Box
+            sx={{
+              minWidth: "100%",
+              my: "20px",
+              "& #outlined-basic": {
+                padding: "10px",
+              },
+              "& .MuiInputLabel-root": {
+                top: "-7px",
+              },
+            }}
+          >
+            <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
+              Big category name
+            </Typography>
+            <TextField
+              value={bigCategoryName}
+              name="bigCategoryName"
+              type="text"
+              sx={{ minWidth: "100%" }}
+              id="outlined-basic"
+              placeholder="Kategoriya ..."
+              variant="outlined"
+              onChange={textEnter}
+            />
           </Box>
 
           <Box>

@@ -27,8 +27,6 @@ export default function _DrawerAddNewCa_ry(props) {
     setProducts,
     buyesProducts,
     setBuyesProducts,
-    bigCategories,
-    setBigCategories,
   } = useContext(ContextApi);
   let [categoryNameRu, setCategoryNameRu] = useState("");
   let [categoryNameUz, setCategoryNameUz] = useState("");
@@ -76,11 +74,7 @@ export default function _DrawerAddNewCa_ry(props) {
           id: maxIdCategory + 1,
           categoryName: categoryNameUz,
           categoryNameRu: categoryNameRu ? categoryNameRu : null,
-          // bigCategoryId: bigCategoryName
-          //   ? bigCategories.find(
-          //       (item) => item.categoryName === bigCategoryName
-          //     ).id
-          //   : null,
+          bigCategoryId: bigCategoryName ? bigCategoryName : null,
         },
       ]);
 
@@ -88,6 +82,7 @@ export default function _DrawerAddNewCa_ry(props) {
 
       setCategoryNameRu("");
       setCategoryNameUz("");
+      setBigCategoryName("");
     } else {
       alert("Text kiriting !");
     }
@@ -187,7 +182,22 @@ export default function _DrawerAddNewCa_ry(props) {
               },
             }}
           >
-            {/* <Box sx={{ minWidth: "100%" }}>
+            <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
+              Big category name
+            </Typography>
+
+            <TextField
+              type="text"
+              sx={{ minWidth: "100%" }}
+              id="outlined-basic"
+              variant="outlined"
+              value={bigCategoryName}
+              label="Kategoriya . . ."
+              name="bigCategoryName"
+              onChange={(e) => textEnter(e)}
+            />
+          </Box>
+          {/* <Box sx={{ minWidth: "100%" }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">
                   Big category name
@@ -208,7 +218,6 @@ export default function _DrawerAddNewCa_ry(props) {
                 </Select>
               </FormControl>
             </Box> */}
-          </Box>
 
           <Box>
             <button

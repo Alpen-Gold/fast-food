@@ -9,6 +9,4 @@ export const ContextApi = createContext({
   setProducts: (product) => {},
   buyesProducts: [],
   setBuyesProducts: (product) => {},
-  bigCategories: [],
-  setBigCategories: (bigCategories) => {},
 });

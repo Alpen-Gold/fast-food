@@ -12,7 +12,7 @@ import { grey, red } from "@mui/material/colors";
 import Group2128 from "../img/Group 2128.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { ContextApi } from "../context/context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import DeleteIcon from "@mui/icons-material/DeleteOutline";
 
@@ -23,6 +23,8 @@ import _DrawerEditProduct from "../drawer-companents/DrawerEditProduct";
 import _DrawerEditCa_ry from "../drawer-companents/DraverEditCa_ry";
 
 export default function _Category() {
+  let [searchValue, setSearchValue] = useState("");
+
   let {
     orders,
     setOrders,
@@ -133,6 +135,7 @@ export default function _Category() {
           <Box sx={topCardCenter}>
             <Box sx={{ padding: " 0 10px" }}>
               <input
+                value={searchValue}
                 type="text"
                 style={{
                   border: "none",
@@ -142,6 +145,7 @@ export default function _Category() {
                   fontSize: "13px",
                 }}
                 placeholder="Qidirish"
+                onChange={(e) => setSearchValue(e.target.value)}
               />
             </Box>
             <SearchIcon sx={{ mr: "10px", color: grey[400] }}></SearchIcon>
@@ -152,7 +156,11 @@ export default function _Category() {
 
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
-          rows={categories}
+          rows={categories.filter((item) => {
+            return item.categoryName
+              .toLowerCase()
+              .includes(searchValue.toLowerCase());
+          })}
           columns={columns}
           initialState={{
             pagination: {

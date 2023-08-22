@@ -15,17 +15,20 @@ import _Product from "./components/Product";
 import _Fleal from "./components/Fleal";
 import _Customers from "./components/Customers";
 import _Report from "./components/Report";
-import _Employees from "./components/Employees";
 
 // Data
 import { ordersData } from "./data/ordersData";
 import { categoriesData } from "./data/categoriesData";
 import { productsData } from "./data/productsData";
+import { flealsData } from "./data/flealData";
+import { customersData } from "./data/сustomersData";
 
 function App() {
   let [orders, setOrders] = useState(ordersData);
   let [categories, setCategories] = useState(categoriesData);
   let [products, setProducts] = useState(productsData);
+  let [fleals, setFleals] = useState(flealsData);
+  let [customers, setCustomers] = useState(customersData);
   let [buyesProducts, setBuyesProducts] = useState([]);
 
   // login element
@@ -53,6 +56,10 @@ function App() {
         setProducts,
         buyesProducts,
         setBuyesProducts,
+        fleals,
+        setFleals,
+        customers,
+        setCustomers,
       }}
     >
       <Routes>
@@ -68,7 +75,6 @@ function App() {
           <Route path="/fleal" element={<_Fleal />}></Route>
           <Route path="/customers" element={<_Customers />}></Route>
           <Route path="/report" element={<_Report />}></Route>
-          <Route path="/employees" element={<_Employees />}></Route>
         </Route>
       </Routes>
     </ContextApi.Provider>

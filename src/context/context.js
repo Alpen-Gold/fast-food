@@ -9,4 +9,8 @@ export const ContextApi = createContext({
   setProducts: (product) => {},
   buyesProducts: [],
   setBuyesProducts: (product) => {},
+  fleals: [],
+  setFleals: (fleals) => {},
+  customers: [],
+  setCustomers: (customers) => {},
 });

@@ -92,9 +92,8 @@ const _Leyaut = () => {
                 { text: "Filiallar", icon: mapPin, path: "fleal" },
                 { text: "Mijozlar", icon: users, path: "customers" },
                 { text: "Xisobot", icon: barChart2, path: "report" },
-                { text: "Hodimlar", icon: group, path: "employees" },
               ].map((item) => (
-                <NavLink to={item.path}>
+                <NavLink to={item.path} key={item.text}>
                   <ListItemButton sx={{ pl: "30px" }}>
                     <ListItemIcon>
                       <span
@@ -120,24 +119,6 @@ const _Leyaut = () => {
                   </ListItemButton>
                 </NavLink>
               ))}
-
-              <ListItemButton onClick={handleClick}>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </ListItemButton>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary="Starred" />
-                  </ListItemButton>
-                </List>
-              </Collapse>
             </List>
           </Box>
         </Grid>

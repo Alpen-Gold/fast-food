@@ -12,7 +12,7 @@ import { grey, red } from "@mui/material/colors";
 import Group2128 from "../img/Group 2128.png";
 import SearchIcon from "@mui/icons-material/Search";
 import { ContextApi } from "../context/context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import DeleteIcon from "@mui/icons-material/DeleteOutline";
 
 // companent
@@ -20,6 +20,8 @@ import _DrawerNewProduct from "../drawer-companents/DrawerNewProduct";
 import _DrawerEditProduct from "../drawer-companents/DrawerEditProduct";
 
 export default function _Product() {
+  let [searchValue, setSearchValue] = useState("");
+
   let {
     orders,
     setOrders,
@@ -30,8 +32,6 @@ export default function _Product() {
     buyesProducts,
     setBuyesProducts,
   } = useContext(ContextApi);
-
-  console.log(products);
 
   let deleteProduct = (productItem) => {
     let indexProduct = products.findIndex(
@@ -141,6 +141,7 @@ export default function _Product() {
           <Box sx={topCardCenter}>
             <Box sx={{ padding: " 0 10px" }}>
               <input
+                value={searchValue}
                 type="text"
                 style={{
                   border: "none",
@@ -150,6 +151,7 @@ export default function _Product() {
                   fontSize: "13px",
                 }}
                 placeholder="Qidirish"
+                onChange={(e) => setSearchValue(e.target.value)}
               />
             </Box>
             <SearchIcon sx={{ mr: "10px", color: grey[400] }}></SearchIcon>
@@ -160,7 +162,11 @@ export default function _Product() {
 
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
-          rows={products}
+          rows={products.filter((item) => {
+            return item.productName
+              .toLowerCase()
+              .includes(searchValue.toLowerCase());
+          })}
           columns={columns}
           initialState={{
             pagination: {

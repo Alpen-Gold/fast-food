@@ -114,9 +114,8 @@ export default function _DrawerPosition(props) {
           return item;
         })
       );
-
-      setPositionNumberEdit("");
       setPositionNameEdit("");
+      setPositionNumberEdit("");
       setTuriValueEdit("Operator");
 
       toggleDrawer("right", false)();

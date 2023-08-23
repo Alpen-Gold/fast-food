@@ -286,14 +286,19 @@ function _OrderVertical(props) {
         >
           <button
             className="xcardType"
-            onClick={() => props.enteredDale("notDale", item)}
+            onClick={
+              (() => props.enteredDale("notDale", item),
+              toggleDrawer("right", false))
+            }
           >
             <img src={x} alt="" />
           </button>
 
           <button
             className="xcardType"
-            onClick={() => props.enteredDale("dale", item)}
+            onClick={() => (
+              props.enteredDale("dale", item), toggleDrawer("right", false)
+            )}
           >
             <img src={Path} alt="" />
           </button>

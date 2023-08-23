@@ -124,7 +124,7 @@ export default function DrawerEditCategory(props) {
               type="text"
               sx={{ minWidth: "100%" }}
               id="outlined-basic"
-              label="Kategoriya nomi (uz) ..."
+              placeholder="Kategoriya nomi (uz) ..."
               variant="outlined"
               onChange={textEnter}
             />
@@ -151,7 +151,7 @@ export default function DrawerEditCategory(props) {
               type="text"
               sx={{ minWidth: "100%" }}
               id="outlined-basic"
-              label="Kategoriya nomi (ru) ..."
+              placeholder="Kategoriya nomi (ru) ..."
               variant="outlined"
               onChange={textEnter}
             />

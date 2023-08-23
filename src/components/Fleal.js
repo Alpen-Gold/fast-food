@@ -113,12 +113,7 @@ export default function _Fleal() {
   return (
     <>
       <BigCards>
-        <Box sx={topCardLest}>
-          {/* onClick={toggleDrawer("right", true)} */}
-          <_DrawerNewFleal />
-
-          <Typography sx={titleStyle}>Yangi filial qo’shish</Typography>
-        </Box>
+        <_DrawerNewFleal />
 
         <Box
           sx={{

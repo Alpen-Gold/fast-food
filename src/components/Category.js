@@ -1,19 +1,11 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import {
-  BigCards,
-  buttonStyle,
-  titleStyle,
-  topCardCenter,
-  topCardLest,
-} from "../styles/style-sx";
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { grey, red } from "@mui/material/colors";
-import Group2128 from "../img/Group 2128.png";
+import { BigCards, topCardCenter } from "../styles/style-sx";
+import { Box, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
 import { ContextApi } from "../context/context";
 import { useContext, useState } from "react";
-import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import DeleteIcon from "@mui/icons-material/DeleteOutline";
 
 // companent
@@ -23,19 +15,13 @@ import _DrawerEditProduct from "../drawer-companents/DrawerEditProduct";
 import _DrawerEditCa_ry from "../drawer-companents/DraverEditCa_ry";
 
 export default function _Category() {
+  // Qidirish inputning holati uchun lokal tilovat
   let [searchValue, setSearchValue] = useState("");
 
-  let {
-    orders,
-    setOrders,
-    categories,
-    setCategories,
-    products,
-    setProducts,
-    buyesProducts,
-    setBuyesProducts,
-  } = useContext(ContextApi);
+  // Context dan kerakli ma'lumotlarni olish
+  let { categories, setCategories, setProducts } = useContext(ContextApi);
 
+  // Kategoriya o'chirish funksiyasi
   let deleteCategory = (categoryIndex) => {
     console.log("delete Category !", categoryIndex);
 
@@ -53,6 +39,7 @@ export default function _Category() {
     );
   };
 
+  // DataGrid ustunlari
   const columns = [
     {
       field: "categoryName",
@@ -89,10 +76,12 @@ export default function _Category() {
       flex: 1,
       renderCell: (params) => (
         <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          {/* Tahrirlash komponenti */}
           <Box sx={topCardCenter}>
             <_DrawerEditCa_ry categoryItem={params.row}></_DrawerEditCa_ry>
           </Box>
 
+          {/* O'chirish tugmasi */}
           <Box sx={topCardCenter}>
             <Box
               padding={" 0 2.5px"}
@@ -110,17 +99,14 @@ export default function _Category() {
       ),
     },
   ];
+
+  // JSX asosiy qismi
   return (
     <>
-      {/*  */}
+      {/* Kategoriya qo'shish oynasi */}
       <BigCards>
-        <Box sx={topCardLest}>
-          {/* onClick={toggleDrawer("right", true)} */}
-          <_DrawerAddNewCa_ry />
-
-          <Typography sx={titleStyle}>Yangi kategoriya qo’shish</Typography>
-        </Box>
-
+        <_DrawerAddNewCa_ry />
+        {/* Qidirish input va SearchIcon */}
         <Box
           sx={{
             backgroundColor: "white",
@@ -152,8 +138,8 @@ export default function _Category() {
           </Box>
         </Box>
       </BigCards>
-      {/*  */}
 
+      {/* Kategoriya ro'yxati */}
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={categories.filter((item) => {
@@ -169,7 +155,6 @@ export default function _Category() {
           }}
           sx={{
             padding: "0 30px",
-
             "& .MuiDataGrid-row": {
               backgroundColor: "white",
               my: "5px",

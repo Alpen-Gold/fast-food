@@ -113,7 +113,7 @@ let _DrawerAddNewProduct = (props) => {
           type="text"
           sx={{ minWidth: "100%" }}
           id="outlined-basic"
-          label="Maxsulot nomi . . ."
+          placeholder="Maxsulot nomi . . ."
           variant="outlined"
           onChange={(e) => textEnter(e)}
         />
@@ -142,7 +142,7 @@ let _DrawerAddNewProduct = (props) => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={categoryValue}
-              label="Kategoriya . . ."
+              placeholder="Kategoriya . . ."
               name="category"
               onChange={(e) => textEnter(e)}
             >
@@ -177,7 +177,7 @@ let _DrawerAddNewProduct = (props) => {
           name="price"
           sx={{ minWidth: "100%" }}
           id="outlined-basic"
-          label="Narxi . . ."
+          placeholder="Narxi . . ."
           variant="outlined"
           onChange={(e) => textEnter(e)}
         />
@@ -205,7 +205,7 @@ let _DrawerAddNewProduct = (props) => {
           name="extra"
           sx={{ minWidth: "100%" }}
           id="outlined-basic"
-          label="Qo’shimcha ma’lumot . . ."
+          placeholder="Qo’shimcha ma’lumot . . ."
           variant="outlined"
           onChange={(e) => textEnter(e)}
         />

@@ -117,9 +117,11 @@ export default function _Customers() {
                 onClick={() => clickTypeActive(params.row)}
               >
                 {params.row.isActive ? (
-                  <BlockIcon></BlockIcon>
+                  <BlockIcon sx={{ color: grey[700] }}></BlockIcon>
                 ) : (
-                  <CheckCircleOutlineTwoToneIcon></CheckCircleOutlineTwoToneIcon>
+                  <CheckCircleOutlineTwoToneIcon
+                    sx={{ color: grey[700] }}
+                  ></CheckCircleOutlineTwoToneIcon>
                 )}
               </button>
             </Box>
@@ -141,7 +143,7 @@ export default function _Customers() {
                 className={"ordersBtnTopLeftActive"}
                 style={{ cursor: "pointer" }}
               >
-                <DeleteIcon></DeleteIcon>
+                <DeleteIcon sx={{ color: grey[700] }}></DeleteIcon>
               </button>
             </Box>
           </Box>
@@ -153,12 +155,7 @@ export default function _Customers() {
   return (
     <>
       <BigCards>
-        <Box sx={topCardLest}>
-          {/* onClick={toggleDrawer("right", true)} */}
-          <_DrawerCustomer type={"new"} />
-
-          <Typography sx={titleStyle}>Yangi mijoz qo’shish</Typography>
-        </Box>
+        <_DrawerCustomer type={"new"} />
 
         <Box
           sx={{

@@ -80,7 +80,7 @@ export default function _DrawerEditProduct(props) {
     if (type.target.name === "extra") setExtraValue(type.target.value);
   };
 
-  let addNewProduct = () => {
+  let editValueProduct = () => {
     console.log(image);
 
     if (nameValue !== "" && categoryValue !== "" && priceValue !== "") {
@@ -174,7 +174,7 @@ export default function _DrawerEditProduct(props) {
               type="text"
               sx={{ minWidth: "100%" }}
               id="outlined-basic"
-              label="Maxsulot nomi . . ."
+              placeholder="Maxsulot nomi . . ."
               variant="outlined"
               onChange={(e) => textEnter(e)}
             />
@@ -201,7 +201,7 @@ export default function _DrawerEditProduct(props) {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={categoryValue}
-                  label="Kategoriya . . ."
+                  placeholder="Kategoriya . . ."
                   name="category"
                   onChange={(e) => textEnter(e)}
                 >
@@ -236,7 +236,7 @@ export default function _DrawerEditProduct(props) {
               name="price"
               sx={{ minWidth: "100%" }}
               id="outlined-basic"
-              label="Narxi . . ."
+              placeholder="Narxi . . ."
               variant="outlined"
               onChange={(e) => textEnter(e)}
             />
@@ -264,7 +264,7 @@ export default function _DrawerEditProduct(props) {
               name="extra"
               sx={{ minWidth: "100%" }}
               id="outlined-basic"
-              label="Qo’shimcha ma’lumot . . ."
+              placeholder="Qo’shimcha ma’lumot . . ."
               variant="outlined"
               onChange={(e) => textEnter(e)}
             />
@@ -331,7 +331,7 @@ export default function _DrawerEditProduct(props) {
             <button
               className="all-button"
               style={{ fontSize: "20px", marginTop: "15px" }}
-              onClick={() => addNewProduct()}
+              onClick={() => editValueProduct()}
             >
               Saqlash
             </button>

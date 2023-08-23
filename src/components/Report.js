@@ -10,8 +10,6 @@ import {
 } from "@mui/material";
 
 // Component
-import imgLogin from "../img/3390.png";
-import { grey, red } from "@mui/material/colors";
 
 // Data
 // import { ordersData } from "./data/ordersData";

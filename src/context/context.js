@@ -13,4 +13,6 @@ export const ContextApi = createContext({
   setFleals: (fleals) => {},
   customers: [],
   setCustomers: (customers) => {},
+  position: [],
+  setPosition: (position) => {},
 });

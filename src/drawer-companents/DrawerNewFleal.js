@@ -3,7 +3,13 @@ import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import { useState, useContext } from "react";
-import { buttonStyle, disBetween, topCardCenter } from "../styles/style-sx";
+import {
+  buttonStyle,
+  disBetween,
+  titleStyle,
+  topCardCenter,
+  topCardLest,
+} from "../styles/style-sx";
 import { TextField, Typography } from "@mui/material";
 import { grey, red } from "@mui/material/colors";
 import AddIcon from "@mui/icons-material/Add";
@@ -264,11 +270,15 @@ export default function _DrawerNewFleal(props) {
 
   return (
     <div>
-      <Button onClick={toggleDrawer("right", true)}>
-        <Box sx={buttonStyle}>
-          <Typography sx={{ fontSize: "28px", color: "white" }}>+</Typography>
-        </Box>
-      </Button>
+      <Box sx={topCardLest} onClick={toggleDrawer("right", true)}>
+        <Button>
+          <Box sx={buttonStyle}>
+            <Typography sx={{ fontSize: "28px", color: "white" }}>+</Typography>
+          </Box>
+        </Button>
+        <Typography sx={titleStyle}>Yangi filial qo’shish</Typography>
+      </Box>
+
       <SwipeableDrawer
         anchor={"right"}
         open={state["right"]}

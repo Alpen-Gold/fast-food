@@ -63,14 +63,25 @@ a {
   background-color: #fcb600 !important;
   border-radius: 0px 6px 6px 0px;
 }
+
+.active .menuIcon {
+  color: white;
+}
+
 .active .MuiListItemButton-gutters .MuiListItemText-primary {
   color: white !important;
+  font-weight: 600;
+}
+
+.MuiListItemButton-gutters .MuiListItemText-primary {
+  font-weight: 600;
 }
 
 .MuiList-root,
 .MuiList-padding,
 .css-11fbwpb-MuiList-root {
   padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .navbarActiveButton {
@@ -78,7 +89,7 @@ a {
   box-shadow: 0px 2px 2px 0px rgba(174, 176, 181, 0.31);
   width: 25%;
   min-height: 36px;
-  margin: 0 2.5px;
+  margin: 0 2.5px !important;
   border: none;
   font-size: 14px !important;
   font-weight: 400 !important;
@@ -91,9 +102,9 @@ a {
   font-size: 14px !important;
   cursor: pointer;
   min-height: 36px;
-  margin: 0 2.5px;
+  margin: 0 2.5px !important;
   width: 25%;
-  color: #2d3a45;
+  color: grey !important;
   border-radius: 18px;
   transition: 0.3s;
 }
@@ -224,4 +235,10 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.menuIcon {
+  font-weight: bold !important;
+  font-size: 18px !important;
+  color: #2d3a45;
 }

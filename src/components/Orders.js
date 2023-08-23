@@ -26,6 +26,7 @@ import {
   topCardLest,
   topCardCenter,
   navbarActiveButton,
+  topCardCenterLeft,
 } from "../styles/style-sx";
 import _DrawerNewOrder from "../drawer-companents/DrawerNewOrder";
 // Data
@@ -128,11 +129,7 @@ function _Orders(props) {
   return (
     <>
       <BigCards>
-        <Box sx={topCardLest}>
-          <_DrawerNewOrder></_DrawerNewOrder>
-
-          <Typography sx={titleStyle}>Yangi buyurtma qo’shish</Typography>
-        </Box>
+        <_DrawerNewOrder></_DrawerNewOrder>
 
         <Box sx={{ backgroundColor: "white", flex: 1, padding: "20px 50px" }}>
           <Box sx={topCardCenter}>
@@ -201,7 +198,7 @@ function _Orders(props) {
         </Box>
 
         <Box sx={topCardLest}>
-          <Box sx={topCardCenter}>
+          <Box sx={topCardCenterLeft}>
             <Box sx={{ display: "flex", gap: "10px" }}>
               <button
                 className={

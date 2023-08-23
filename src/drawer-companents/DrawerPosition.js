@@ -10,29 +10,33 @@ import {
   topCardCenter,
   topCardLest,
 } from "../styles/style-sx";
-import { Checkbox, TextField, Typography } from "@mui/material";
+import {
+  FormControl,
+  NativeSelect,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { grey, red } from "@mui/material/colors";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
 // data and image and companent
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import truck from "../img/truck.svg";
 import { ContextApi } from "../context/context";
+import { productsData } from "../data/productsData";
 import _DrawerAddNewProduct from "./DrawerAddNewProduct";
 
-export default function _DrawerCustomer(props) {
-  let { customers, setCustomers } = useContext(ContextApi);
-  let [ucerName, setUcerName] = useState("");
-  let [ucerNumber, setUcerNumber] = useState("");
-  let [buyCount, setBuyCount] = useState("");
-  let [typeActive, setTypeActive] = useState(true);
+export default function _DrawerPosition(props) {
+  let { position, setPosition } = useContext(ContextApi);
+  let [positionName, setPositionName] = useState("");
+  let [positionNumber, setPositionNumber] = useState("");
+  let [turiValue, setTuriValue] = useState("Operator");
+  let [clickItem, setClickItem] = useState({});
 
-  //   edit state
-  let [ucerNameEdit, setUcerNameEdit] = useState("");
-  let [ucerNumberEdit, setUcerNumberEdit] = useState("");
-  let [buyCountEdit, setBuyCountEdit] = useState("");
-  let [typeActiveEdit, setTypeActiveEdit] = useState(true);
-  let [clickCostomer, setClickCostomer] = useState({});
+  let [positionNameEdit, setPositionNameEdit] = useState("");
+  let [positionNumberEdit, setPositionNumberEdit] = useState("");
+  let [turiValueEdit, setTuriValueEdit] = useState("Operator");
 
   const [state, setState] = React.useState({
     top: false,
@@ -40,8 +44,6 @@ export default function _DrawerCustomer(props) {
     bottom: false,
     right: false,
   });
-
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -56,76 +58,84 @@ export default function _DrawerCustomer(props) {
   };
 
   let textEnter = (e) => {
-    if (e.target.name === "ucerName") setUcerName(e.target.value);
-    if (e.target.name === "ucerNumber") setUcerNumber(e.target.value);
-    if (e.target.name === "buyCount") setBuyCount(e.target.value);
+    if (e.target.name === "positionName") setPositionName(e.target.value);
+    if (e.target.name === "positionNumber") setPositionNumber(e.target.value);
   };
 
-  let textEnterEdit = (e) => {
-    if (e.target.name === "ucerNameEdit") setUcerNameEdit(e.target.value);
-    if (e.target.name === "ucerNumberEdit") setUcerNumberEdit(e.target.value);
-    if (e.target.name === "buyCountEdit") setBuyCountEdit(e.target.value);
-  };
+  let addNewPosition = () => {
+    const bigId = Math.max(...position.map((item) => item.id));
 
-  let addNewCustomer = () => {
-    const bigId = Math.max(...customers.map((item) => item.id));
-
-    if (ucerName !== "" && ucerNumber !== "") {
-      setCustomers((prev) => [
+    if (positionName !== "" && turiValue !== "" && positionNumber !== "") {
+      setPosition((prev) => [
         ...prev,
         {
           id: bigId + 1,
-          phone: ucerNumber,
-          name: ucerName,
-          buyCount: buyCount !== "" ? buyCount : null,
-          isActive: typeActive ? true : false,
+          name: positionName,
+          phone: positionNumber,
+          position: turiValue,
         },
       ]);
 
-      toggleDrawer("right", false)();
+      setPositionNumber("");
+      setPositionName("");
+      setTuriValue("Operator");
 
-      setUcerNumber("");
-      setUcerName("");
-      setBuyCount("");
-      setTypeActive(true);
+      toggleDrawer("right", false)();
     } else {
       alert("entered Text !");
     }
   };
 
-  let editIconClick = (customerItem) => {
-    setUcerNumberEdit(customerItem.phone);
-    setUcerNameEdit(customerItem.name);
-    setBuyCountEdit(customerItem.buyCount);
-    setTypeActiveEdit(customerItem.isActive);
-    setClickCostomer(customerItem);
+  let textEnterEdit = (e) => {
+    if (e.target.name === "positionNameEdit")
+      setPositionNameEdit(e.target.value);
+    if (e.target.name === "positionNumberEdit")
+      setPositionNumberEdit(e.target.value);
   };
 
-  let editCustomer = () => {
-    setCustomers((prev) =>
-      prev.map((item) => {
-        if (item.id === clickCostomer.id) {
-          return {
-            ...item,
-            phone: ucerNumberEdit,
-            name: ucerNameEdit,
-            buyCount: buyCountEdit,
-            isActive: typeActiveEdit,
-          };
-        }
-        return item; // Eğer id eşleşmiyorsa, değişiklik yapmadan mevcut veriyi geri döndür
-      })
-    );
+  let addNewPositionEdit = () => {
+    const bigId = Math.max(...position.map((item) => item.id));
 
-    toggleDrawer("right", false)();
+    if (
+      positionNameEdit !== "" &&
+      turiValueEdit !== "" &&
+      positionNumberEdit !== ""
+    ) {
+      setPosition((prev) =>
+        prev.map((item) => {
+          if (item.id === clickItem.id) {
+            return {
+              ...item,
+              phone: positionNumberEdit,
+              name: positionNameEdit,
+              position: turiValueEdit,
+            };
+          }
+          return item;
+        })
+      );
+
+      setPositionNumberEdit("");
+      setPositionNameEdit("");
+      setTuriValueEdit("Operator");
+
+      toggleDrawer("right", false)();
+    } else {
+      alert("entered Text !");
+    }
+  };
+
+  let editPosition = (item) => {
+    setClickItem(item);
+    setPositionNameEdit(item.name);
+    setPositionNumberEdit(item.phone);
+    setTuriValueEdit(item.position);
   };
 
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 366 }}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      // onKeyDown={toggleDrawer(anchor, false)}
     >
       {props.type === "new" ? (
         <Box
@@ -142,7 +152,7 @@ export default function _DrawerCustomer(props) {
         >
           <Box sx={{ width: "100%", minHeight: "100%" }}>
             <Typography variant="text" sx={{ fontSize: "16px" }}>
-              Yangi mijoz qo’shish
+              Yangi Hodim qo’shish
             </Typography>
 
             <Box
@@ -158,19 +168,17 @@ export default function _DrawerCustomer(props) {
                 },
               }}
             >
-              <Typography
-                sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}
-              >
-                Mijoz ismi
+              <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+                Hodim ismi
               </Typography>
 
               <TextField
-                value={ucerName}
-                name="ucerName"
+                value={positionName}
+                name="positionName"
                 type="text"
                 sx={{ minWidth: "100%" }}
                 id="outlined-basic"
-                placeholder="Mijoz ismi . . ."
+                placeholder="Hodim nomi . . ."
                 variant="outlined"
                 onChange={(e) => textEnter(e)}
               />
@@ -189,18 +197,16 @@ export default function _DrawerCustomer(props) {
                 },
               }}
             >
-              <Typography
-                sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}
-              >
-                Telefon raqam
+              <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+                Hodim raqami
               </Typography>
 
               <TextField
-                value={ucerNumber}
-                name="ucerNumber"
+                value={positionNumber}
+                name="positionNumber"
                 sx={{ minWidth: "100%" }}
                 id="outlined-basic"
-                placeholder="Telefon raqam . . ."
+                placeholder="Hodim raqami . . ."
                 variant="outlined"
                 onChange={(e) => textEnter(e)}
               />
@@ -219,53 +225,32 @@ export default function _DrawerCustomer(props) {
                 },
               }}
             >
-              <Typography
-                sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}
-              >
-                Buyurtmalar soni
+              <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+                Turini Tanlang
               </Typography>
 
-              <TextField
-                value={buyCount}
-                name="buyCount"
-                sx={{ minWidth: "100%" }}
-                id="outlined-basic"
-                placeholder="Buyurtmalar soni . . ."
-                variant="outlined"
-                onChange={(e) => textEnter(e)}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                minWidth: "100%",
-                display: "flex",
-                alignItems: "center",
-                "& #outlined-basic": {
-                  padding: "10px",
-                },
-
-                "& .MuiInputLabel-root": {
-                  top: "-5px",
-                },
-              }}
-            >
-              <Checkbox
-                {...label}
-                checked={!typeActive}
-                onChange={(e) => setTypeActive(!e.target.checked)}
-              />
-              <Typography
-                sx={{ color: "black", fontSize: "15px", color: grey[700] }}
-              >
-                Blocklangan mijoz
-              </Typography>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <NativeSelect
+                    value={turiValue}
+                    onChange={(e) => setTuriValue(e.target.value)}
+                    inputProps={{
+                      name: "age",
+                      id: "uncontrolled-native",
+                    }}
+                  >
+                    <option value={"Operator"}>Operator</option>
+                    <option value={"Admin"}>Admin</option>
+                    <option value={"Kassir"}>Kassir</option>
+                  </NativeSelect>
+                </FormControl>
+              </Box>
             </Box>
 
             <button
               className="all-button"
               style={{ fontSize: "20px", marginTop: "15px" }}
-              onClick={() => addNewCustomer()}
+              onClick={() => addNewPosition()}
             >
               Saqlash
             </button>
@@ -286,7 +271,7 @@ export default function _DrawerCustomer(props) {
         >
           <Box sx={{ width: "100%", minHeight: "100%" }}>
             <Typography variant="text" sx={{ fontSize: "16px" }}>
-              Yangi mijoz qo’shish
+              Yangi Hodim qo’shish
             </Typography>
 
             <Box
@@ -302,19 +287,17 @@ export default function _DrawerCustomer(props) {
                 },
               }}
             >
-              <Typography
-                sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}
-              >
-                Filial ismi
+              <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+                Hodim ismi
               </Typography>
 
               <TextField
-                value={ucerNameEdit}
-                name="ucerNameEdit"
+                value={positionNameEdit}
+                name="positionNameEdit"
                 type="text"
                 sx={{ minWidth: "100%" }}
                 id="outlined-basic"
-                placeholder="Filial ismi . . ."
+                placeholder="Hodim nomi . . ."
                 variant="outlined"
                 onChange={(e) => textEnterEdit(e)}
               />
@@ -333,18 +316,16 @@ export default function _DrawerCustomer(props) {
                 },
               }}
             >
-              <Typography
-                sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}
-              >
-                Telefon raqam
+              <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+                Hodim raqami
               </Typography>
 
               <TextField
-                value={ucerNumberEdit}
-                name="ucerNumberEdit"
+                value={positionNumberEdit}
+                name="positionNumberEdit"
                 sx={{ minWidth: "100%" }}
                 id="outlined-basic"
-                placeholder="Telefon raqam . . ."
+                placeholder="Hodim raqami . . ."
                 variant="outlined"
                 onChange={(e) => textEnterEdit(e)}
               />
@@ -363,53 +344,32 @@ export default function _DrawerCustomer(props) {
                 },
               }}
             >
-              <Typography
-                sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}
-              >
-                Buyurtmalar soni
+              <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+                Turini Tanlang
               </Typography>
 
-              <TextField
-                value={buyCountEdit}
-                name="buyCountEdit"
-                sx={{ minWidth: "100%" }}
-                id="outlined-basic"
-                placeholder="Buyurtmalar soni . . ."
-                variant="outlined"
-                onChange={(e) => textEnterEdit(e)}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                minWidth: "100%",
-                display: "flex",
-                alignItems: "center",
-                "& #outlined-basic": {
-                  padding: "10px",
-                },
-
-                "& .MuiInputLabel-root": {
-                  top: "-5px",
-                },
-              }}
-            >
-              <Checkbox
-                {...label}
-                checked={!typeActiveEdit}
-                onChange={(e) => setTypeActiveEdit(!e.target.checked)}
-              />
-              <Typography
-                sx={{ color: "black", fontSize: "15px", color: grey[700] }}
-              >
-                Blocklangan mijoz
-              </Typography>
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <NativeSelect
+                    value={turiValueEdit}
+                    onChange={(e) => setTuriValueEdit(e.target.value)}
+                    inputProps={{
+                      name: "age",
+                      id: "uncontrolled-native",
+                    }}
+                  >
+                    <option value={"Operator"}>Operator</option>
+                    <option value={"Admin"}>Admin</option>
+                    <option value={"Kassir"}>Kassir</option>
+                  </NativeSelect>
+                </FormControl>
+              </Box>
             </Box>
 
             <button
               className="all-button"
               style={{ fontSize: "20px", marginTop: "15px" }}
-              onClick={() => editCustomer()}
+              onClick={() => addNewPositionEdit()}
             >
               Saqlash
             </button>
@@ -430,25 +390,24 @@ export default function _DrawerCustomer(props) {
               </Typography>
             </Box>
           </Button>
-          <Typography sx={titleStyle}>Yangi mijoz qo’shish</Typography>
+          <Typography sx={titleStyle}>Yangi Hodim qo’shish</Typography>
         </Box>
-      ) : props.type === "icon" ? (
+      ) : props.type === "edit" ? (
         <Box
           padding={" 0 2.5px"}
           onClick={() => (
-            toggleDrawer("right", true)(), editIconClick(props.customerItem)
+            toggleDrawer("right", true)(), editPosition(props.positionItem)
           )}
         >
           <button
             className={"ordersBtnTopLeftActive"}
             style={{ cursor: "pointer" }}
           >
-            <ModeEditOutlinedIcon
-              sx={{ color: grey[700] }}
-            ></ModeEditOutlinedIcon>
+            <ModeEditOutlinedIcon></ModeEditOutlinedIcon>
           </button>
         </Box>
       ) : null}
+
       <SwipeableDrawer
         anchor={"right"}
         open={state["right"]}

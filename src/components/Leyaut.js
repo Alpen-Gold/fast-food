@@ -7,33 +7,25 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import StarBorder from "@mui/icons-material/StarBorder";
 import { grey } from "@mui/material/colors";
 
 // image
 import imgLogo from "../img/Bitmap.png";
-import checkCircle from "../img/check-circle.svg";
-import archive from "../img/archive.svg";
-import layers from "../img/layers.svg";
-import mapPin from "../img/map-pin.svg";
-import users from "../img/users.svg";
-import barChart2 from "../img/bar-chart-2.svg";
-import group from "../img/Group.svg";
+import { FiCheckCircle } from "react-icons/fi";
+import { BsArchive } from "react-icons/bs";
+import { BiLayer } from "react-icons/bi";
+import { CiLocationOn } from "react-icons/ci";
+import { FiUsers } from "react-icons/fi";
+import { FiBarChart2 } from "react-icons/fi";
+import { FiSettings } from "react-icons/fi";
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { CiLocationArrow1 } from "react-icons/ci";
 
-const _Leyaut = () => {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
+const _Leyaut = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={0}>
+        {/* Sidebar */}
         <Grid
           xs={4}
           sx={{
@@ -44,6 +36,7 @@ const _Leyaut = () => {
           }}
         >
           <Box>
+            {/* Logo and Branding */}
             <Box
               sx={{
                 display: "flex",
@@ -55,7 +48,7 @@ const _Leyaut = () => {
             >
               <img
                 src={imgLogo}
-                alt=""
+                alt="Fast Food Logo"
                 style={{
                   width: "70px",
                   height: "70px",
@@ -73,45 +66,76 @@ const _Leyaut = () => {
               </Box>
             </Box>
 
+            {/* Sidebar Menu */}
             <List
               sx={{
                 borderLeft: "5px solid #FCB600",
                 width: "100%",
                 maxWidth: 360,
                 bgcolor: "background.paper",
-
                 pr: "20px",
               }}
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
               {[
-                { text: "Buyurtmalar", icon: checkCircle, path: "orders" },
-                { text: "Maxsulotlar", icon: archive, path: "product" },
-                { text: "Kategoriyalar", icon: layers, path: "category" },
-                { text: "Filiallar", icon: mapPin, path: "fleal" },
-                { text: "Mijozlar", icon: users, path: "customers" },
-                { text: "Xisobot", icon: barChart2, path: "report" },
+                // Buyurtmalar
+                {
+                  text: "Buyurtmalar",
+                  icon: <FiCheckCircle className="menuIcon" />,
+                  path: "orders",
+                },
+                // Maxsulotlar
+                {
+                  text: "Maxsulotlar",
+                  icon: <BsArchive className="menuIcon" />,
+                  path: "product",
+                },
+                // Kategoriyalar
+                {
+                  text: "Kategoriyalar",
+                  icon: <BiLayer className="menuIcon" />,
+                  path: "category",
+                },
+                // Filiallar
+                {
+                  text: "Filiallar",
+                  icon: <CiLocationOn className="menuIcon" />,
+                  path: "fleal",
+                },
+                // Mijozlar
+                {
+                  text: "Mijozlar",
+                  icon: <FiUsers className="menuIcon" />,
+                  path: "customers",
+                },
+                // Xisobot
+                {
+                  text: "Xisobot",
+                  icon: <FiBarChart2 className="menuIcon" />,
+                  path: "report",
+                },
+                // Shikoyat va fikrlar
+                {
+                  text: "Shikoyat va fikrlar",
+                  icon: <AiOutlineCloseSquare className="menuIcon" />,
+                  path: "complaints-opinions",
+                },
+                // Xarita
+                {
+                  text: "Xarita",
+                  icon: <CiLocationArrow1 className="menuIcon" />,
+                  path: "location",
+                },
+                {
+                  text: "Lavozimlar",
+                  icon: <FiSettings className="menuIcon" />,
+                  path: "position",
+                },
               ].map((item) => (
                 <NavLink to={item.path} key={item.text}>
-                  <ListItemButton sx={{ pl: "30px" }}>
-                    <ListItemIcon>
-                      <span
-                        className="bg-icon"
-                        style={{
-                          backgroundColor: "#F6F6F6",
-                          width: "36px",
-                          height: "36px",
-                          borderRadius: "5px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          margin: 0,
-                        }}
-                      >
-                        <img src={item.icon} alt="" />
-                      </span>
-                    </ListItemIcon>
+                  <ListItemButton sx={{ pl: "30px", my: "5px" }}>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText
                       primary={item.text}
                       sx={{ color: "#2D3A45" }}
@@ -122,6 +146,8 @@ const _Leyaut = () => {
             </List>
           </Box>
         </Grid>
+
+        {/* Main Content */}
         <Grid
           xs={8}
           sx={{
@@ -132,6 +158,7 @@ const _Leyaut = () => {
           }}
         >
           <Box>
+            {/* Outlet for rendering nested routes */}
             <Outlet />
           </Box>
         </Grid>

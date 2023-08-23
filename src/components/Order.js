@@ -324,7 +324,7 @@ function _Order(props) {
               backgroundColor: "white",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              alignItems: "start",
               justifyContent: "space-between",
               padding: "30px 40px",
               minWidth: "25%",
@@ -337,25 +337,9 @@ function _Order(props) {
                   <Typography sx={{ fontSize: "20px" }}>{item.id}</Typography>
                 </Box>
               </Box>
-
-              <span
-                className="bg-icon"
-                style={{
-                  backgroundColor: "#F6F6F6",
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: 0,
-                }}
-              >
-                <img src={path} alt="" />
-              </span>
             </Box>
 
-            <hr style={{ width: "100%" }} />
+            <Box sx={{ width: "100px", borderBottom: "1px solid grey" }}></Box>
 
             <Box sx={disBetween}>
               <img src={clockCopy} alt="" />

@@ -154,7 +154,7 @@ let _DrawerOrderCheck = (props) => {
           type="text"
           sx={{ minWidth: "100%" }}
           id="outlined-basic"
-          label="Ism . . ."
+          placeholder="Ism . . ."
           variant="outlined"
           onChange={(e) => textEnter(e)}
         />
@@ -181,7 +181,7 @@ let _DrawerOrderCheck = (props) => {
           name="number"
           sx={{ minWidth: "100%" }}
           id="outlined-basic"
-          label="Telefon raqam . . ."
+          placeholder="Telefon raqam . . ."
           onChange={(e) => textEnter(e)}
           variant="outlined"
         />
@@ -208,7 +208,7 @@ let _DrawerOrderCheck = (props) => {
           name="addres"
           sx={{ minWidth: "100%" }}
           id="outlined-basic"
-          label="Manzil . . ."
+          placeholder="Manzil . . ."
           variant="outlined"
           onChange={(e) => textEnter(e)}
         />

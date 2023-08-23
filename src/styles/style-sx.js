@@ -36,6 +36,7 @@ export let disBetween = {
 };
 
 export let topCardLest = {
+  cursor: "pointer",
   display: "flex",
   alignItems: "center",
   gap: "8px",
@@ -51,6 +52,15 @@ export let topCardCenter = {
   backgroundColor: "#EDEFF3",
   borderRadius: "30px",
   padding: "5px 2.5px",
+};
+
+export let topCardCenterLeft = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  backgroundColor: "#EDEFF3",
+  borderRadius: "30px",
+  padding: "5px",
 };
 
 export const buttonStyleId = {

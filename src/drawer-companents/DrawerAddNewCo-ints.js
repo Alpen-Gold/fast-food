@@ -14,6 +14,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  NativeSelect,
   Select,
   TextField,
   Typography,
@@ -21,22 +22,17 @@ import {
 
 // data and image and companent
 import { ContextApi } from "../context/context";
-import _DrawerAddNewProduct from "./DrawerAddNewProduct";
 
-export default function _DrawerAddNewCa_ry(props) {
-  let {
-    orders,
-    setOrders,
-    categories,
-    setCategories,
-    products,
-    setProducts,
-    buyesProducts,
-    setBuyesProducts,
-  } = useContext(ContextApi);
-  let [categoryNameRu, setCategoryNameRu] = useState("");
-  let [categoryNameUz, setCategoryNameUz] = useState("");
-  let [bigCategoryName, setBigCategoryName] = useState("");
+export default function _DrawerAddNewCo_ints(props) {
+  let { complaintsOpinions, setComplaintsOpinions } = useContext(ContextApi);
+  const [nameValue, setNameValue] = React.useState("");
+  const [turiValue, setTuriValue] = React.useState("");
+  const [commentValue, setCommentValue] = React.useState("");
+
+  let textEnter = (e) => {
+    if (e.target.name === "ism") setNameValue(e.target.value);
+    if (e.target.name === "comment") setCommentValue(e.target.value);
+  };
 
   const [state, setState] = React.useState({
     top: false,
@@ -57,42 +53,31 @@ export default function _DrawerAddNewCa_ry(props) {
     setState({ ...state, [anchor]: open });
   };
 
-  let textEnter = (type) => {
-    console.log(type.target.value);
-
-    if (type.target.name === "nameCategoryUz")
-      setCategoryNameUz(type.target.value);
-    if (type.target.name === "nameCategoryRu")
-      setCategoryNameRu(type.target.value);
-    if (type.target.name === "bigCategoryName")
-      setBigCategoryName(type.target.value);
-  };
-
-  const maxIdCategory = categories.reduce((maxId, currentOrder) => {
-    return Math.max(maxId, currentOrder.id);
-  }, -1);
-
-  let addNewCategory = () => {
-    if (categoryNameUz !== "") {
-      setCategories((prev) => [
+  let addNewProduct = () => {
+    const lastId = complaintsOpinions.reduce(
+      (maxId, { id }) => Math.max(maxId, id),
+      0
+    );
+    if (nameValue !== "" && commentValue !== "") {
+      setComplaintsOpinions((prev) => [
         ...prev,
         {
-          id: maxIdCategory + 1,
-          categoryName: categoryNameUz,
-          categoryNameRu: categoryNameRu ? categoryNameRu : null,
-          bigCategoryId: bigCategoryName ? bigCategoryName : null,
+          id: lastId + 1,
+          turi: turiValue === "" ? "Shikoyat" : turiValue,
+          name: nameValue,
+          comment: commentValue,
         },
       ]);
 
+      setNameValue("");
+      setCommentValue("");
+      setTuriValue("");
       toggleDrawer("right", false)();
-
-      setCategoryNameRu("");
-      setCategoryNameUz("");
-      setBigCategoryName("");
     } else {
-      alert("Text kiriting !");
+      alert("text entered");
     }
   };
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 366 }}
@@ -114,7 +99,7 @@ export default function _DrawerAddNewCa_ry(props) {
       >
         <Box sx={{ width: "100%", minHeight: "100%" }}>
           <Typography variant="text" sx={{ fontSize: "16px" }}>
-            Yangi kategori qo’shish
+            Yangi qo’shish
           </Typography>
 
           <Box
@@ -130,17 +115,17 @@ export default function _DrawerAddNewCa_ry(props) {
               },
             }}
           >
-            <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
-              Kategoriya nomi uz
+            <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+              Ism kiriting
             </Typography>
 
             <TextField
-              value={categoryNameUz}
-              name="nameCategoryUz"
+              value={nameValue}
+              name="ism"
               type="text"
               sx={{ minWidth: "100%" }}
               id="outlined-basic"
-              placeholder="Kategoriya nomi uz . . ."
+              placeholder="Ism kiriitng . . ."
               variant="outlined"
               onChange={(e) => textEnter(e)}
             />
@@ -155,24 +140,28 @@ export default function _DrawerAddNewCa_ry(props) {
               },
 
               "& .MuiInputLabel-root": {
-                top: "-7px",
+                top: "-5px",
               },
             }}
           >
-            <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
-              Kategoriya nomi ru
+            <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+              Turini Tanlang
             </Typography>
 
-            <TextField
-              value={categoryNameRu}
-              name="nameCategoryRu"
-              type="text"
-              sx={{ minWidth: "100%" }}
-              id="outlined-basic"
-              placeholder="Kategoriya nomi ru . . ."
-              variant="outlined"
-              onChange={(e) => textEnter(e)}
-            />
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <NativeSelect
+                  onChange={(e) => setTuriValue(e.target.value)}
+                  inputProps={{
+                    name: "age",
+                    id: "uncontrolled-native",
+                  }}
+                >
+                  <option value={"Shikoyat"}>Shikoyat</option>
+                  <option value={"Takliflar"}>Takliflar</option>
+                </NativeSelect>
+              </FormControl>
+            </Box>
           </Box>
 
           <Box
@@ -184,22 +173,27 @@ export default function _DrawerAddNewCa_ry(props) {
               },
 
               "& .MuiInputLabel-root": {
-                top: "-7px",
+                top: "-5px",
               },
             }}
           >
-            <Typography sx={{ mb: "15px", color: "#8D9BA8", fontSize: "15px" }}>
-              Big category name
+            <Typography sx={{ color: "#8D9BA8", fontSize: "15px" }}>
+              Turi boyicha malumot bering
             </Typography>
 
-            <TextField
+            <textarea
+              value={commentValue}
+              name="comment"
               type="text"
-              sx={{ minWidth: "100%" }}
+              style={{
+                width: "100%",
+                height: "167px",
+                borderRadius: "10px",
+                objectFit: "cover",
+              }}
               id="outlined-basic"
+              placeholder="Turi boyicha malumot kiriitng . . ."
               variant="outlined"
-              value={bigCategoryName}
-              placeholder="Kategoriya . . ."
-              name="bigCategoryName"
               onChange={(e) => textEnter(e)}
             />
           </Box>
@@ -208,7 +202,7 @@ export default function _DrawerAddNewCa_ry(props) {
             <button
               className="all-button"
               style={{ fontSize: "20px", marginTop: "15px" }}
-              onClick={() => addNewCategory()}
+              onClick={() => addNewProduct()}
             >
               Saqlash
             </button>
@@ -226,7 +220,7 @@ export default function _DrawerAddNewCa_ry(props) {
             <Typography sx={{ fontSize: "28px", color: "white" }}>+</Typography>
           </Box>
         </Button>
-        <Typography sx={titleStyle}>Yangi kategoriya qo’shish</Typography>
+        <Typography sx={titleStyle}>Yangi qo’shish</Typography>
       </Box>
 
       <SwipeableDrawer

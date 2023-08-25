@@ -129,6 +129,7 @@ function _LoginPage(props) {
                 type="password"
                 value={loginPassword}
                 onChange={(e) => changeLogin(e.target.name, e.target.value)}
+                placeholder="Password:12345"
                 sx={{
                   minWidth: "100%",
                   "& #outlined-basic-label": {

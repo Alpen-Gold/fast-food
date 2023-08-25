@@ -110,11 +110,11 @@ const _Leyaut = (props) => {
                   path: "customers",
                 },
                 // Xisobot
-                {
-                  text: "Xisobot",
-                  icon: <FiBarChart2 className="menuIcon" />,
-                  path: "report",
-                },
+                // {
+                //   text: "Xisobot",
+                //   icon: <FiBarChart2 className="menuIcon" />,
+                //   path: "report",
+                // },
                 // Shikoyat va fikrlar
                 {
                   text: "Shikoyat va fikrlar",

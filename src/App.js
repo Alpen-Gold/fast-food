@@ -93,7 +93,7 @@ function App() {
           <Route path="/product" element={<_Product />}></Route>
           <Route path="/fleal" element={<_Fleal />}></Route>
           <Route path="/customers" element={<_Customers />}></Route>
-          <Route path="/report" element={<_Report />}></Route>
+          {/* <Route path="/report" element={<_Report />}></Route> */}
           <Route
             path="/complaints-opinions"
             element={<_Complaints_Opinions />}

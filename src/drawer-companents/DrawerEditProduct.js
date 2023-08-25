@@ -194,9 +194,6 @@ export default function _DrawerEditProduct(props) {
           >
             <Box sx={{ minWidth: "100%" }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                  Category-name
-                </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"

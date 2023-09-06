@@ -123,7 +123,7 @@ function _LoginPage(props) {
               />
               <TextField
                 id="outlined-basic"
-                label="Parol"
+                label="Password:12345"
                 variant="standard"
                 name="password"
                 type="password"

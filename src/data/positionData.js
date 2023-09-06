@@ -3,7 +3,7 @@ export let positionData = [
     id: 1,
     phone: "(+99 893) 461-41-88",
     name: "Nicolina Lindholm",
-    position: "Operator",
+    position: "Admin",
   },
 
   {
@@ -17,7 +17,7 @@ export let positionData = [
     id: 3,
     phone: "(+99 893) 461-41-88",
     name: "Ekaterina Tankova",
-    position: "Operator",
+    position: "Admin",
   },
 
   {

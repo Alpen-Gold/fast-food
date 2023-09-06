@@ -22,6 +22,10 @@ let _DrawerOrderCheck = (props) => {
     orders,
     products,
     setProducts,
+    position,
+    setPosition,
+    customers,
+    setCustomers,
   } = useContext(ContextApi);
   let [nameValue, setNameValue] = useState("");
   let [numberValue, setNumberValue] = useState("");
@@ -45,6 +49,8 @@ let _DrawerOrderCheck = (props) => {
   }, -1);
 
   let addNewOrder = () => {
+    let operator = position.find((item) => item.position === "Operator");
+
     if (
       nameValue !== "" &&
       numberValue !== "" &&
@@ -63,12 +69,53 @@ let _DrawerOrderCheck = (props) => {
           delivery: true,
           location: addresValue,
           totalSum: allSummaOrder + 5000,
-          operator: "Komilova M",
+          operator: operator.name,
           flial: "Fast Food Maksim Gorkiy",
           status: "new",
           orders: buyesProducts,
         },
       ]);
+
+      let manItem = customers.find(
+        (item) =>
+          item.name.toLowerCase() === nameValue.toLowerCase() &&
+          item.phone === numberValue
+      );
+
+      if (manItem !== undefined) {
+        console.log(manItem, "salom");
+        setCustomers((state) =>
+          state.map((item) => {
+            if (item.id === manItem.id) {
+              console.log(item);
+              return {
+                ...item,
+                buyCount: Number(item.buyCount) + 1,
+              };
+            }
+
+            return item;
+          })
+        );
+      } else {
+        let maxId = customers.reduce((maxId, item) => {
+          return Math.max(maxId, item.id);
+        }, 0);
+
+        console.log(maxId, "alig");
+
+        setCustomers((state) => [
+          ...state,
+
+          {
+            id: maxId + 1,
+            phone: numberValue,
+            name: nameValue,
+            buyCount: 1,
+            isActive: true,
+          },
+        ]);
+      }
 
       setNameValue("");
       setNumberValue("");
